@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Tips – Student Success Toolkit</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">📚 Student Success Toolkit</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gpa-calculator.html">GPA Calculator</a></li>
+      <li><a href="unit-converter.html">Unit Converter</a></li>
+      <li><a href="study-tips.html" class="active">Study Tips</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>💡 Study Tips</h1>
+    <p>Proven strategies to help you study smarter, manage your time, and succeed academically.</p>
+  </div>
+
+  <main>
+
+    <!-- Tip Category Filter -->
+    <div class="card">
+      <h2>Filter by Category</h2>
+      <p style="margin-bottom: 14px; color: var(--text-light);">Select a category to highlight those tips, or choose "All" to see everything.</p>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn-accent" onclick="filterTips('all')">All Tips</button>
+        <button class="btn" onclick="filterTips('time')">⏰ Time Management</button>
+        <button class="btn" onclick="filterTips('focus')">🎯 Focus &amp; Habits</button>
+        <button class="btn" onclick="filterTips('memory')">🧠 Memory &amp; Retention</button>
+      </div>
+      <p id="filter-message" style="margin-top: 14px; font-weight: 600; color: var(--primary-dark);"></p>
+    </div>
+
+    <!-- Time Management Tips -->
+    <div class="card tip-section" data-category="time" id="section-time">
+      <h2>⏰ Time Management Strategies</h2>
+      <p style="margin-bottom: 14px; color: var(--text-light);">
+        How you manage your time is one of the biggest factors in academic success.
+      </p>
+      <ol class="styled-ol">
+        <li><strong>Use a planner or digital calendar</strong> — Record every assignment, exam, and deadline as soon as you get the syllabus.</li>
+        <li><strong>Break large tasks into smaller steps</strong> — Instead of "study for final," write "review Chapter 1–3 notes" as a specific task.</li>
+        <li><strong>Use the Pomodoro Technique</strong> — Study for 25 minutes, take a 5-minute break, then repeat. After 4 cycles, take a longer break.</li>
+        <li><strong>Prioritize by urgency and importance</strong> — Do urgent, high-value tasks first. Don't spend an hour on a low-point assignment the night before a major exam.</li>
+        <li><strong>Set a consistent study schedule</strong> — Studying at the same time each day builds a routine and makes it easier to sit down and focus.</li>
+        <li><strong>Avoid multitasking</strong> — Focus on one subject at a time. Switching back and forth between tasks reduces the quality of your work.</li>
+      </ol>
+    </div>
+
+    <!-- Focus & Habits Tips -->
+    <div class="card tip-section" data-category="focus" id="section-focus">
+      <h2>🎯 Focus &amp; Productive Habits</h2>
+      <p style="margin-bottom: 14px; color: var(--text-light);">
+        Good habits practiced consistently will take you further than occasional bursts of effort.
+      </p>
+      <ul class="styled-list">
+        <li>Put your phone on silent or in another room while studying — notifications are the #1 study killer.</li>
+        <li>Find a quiet, dedicated study space — a library, empty classroom, or a quiet corner of your home.</li>
+        <li>Get 7–9 hours of sleep before exams — your brain consolidates memory during sleep.</li>
+        <li>Eat a healthy breakfast or snack before studying — your brain needs fuel to focus.</li>
+        <li>Stay hydrated — even mild dehydration can reduce concentration.</li>
+        <li>Attend every class — it's much harder to catch up than to stay up to date.</li>
+        <li>Sit near the front of the class — it's harder to get distracted and easier to engage.</li>
+        <li>Review notes within 24 hours of class — this dramatically improves long-term retention.</li>
+      </ul>
+    </div>
+
+    <!-- Memory Tips -->
+    <div class="card tip-section" data-category="memory" id="section-memory">
+      <h2>🧠 Memory &amp; Retention Techniques</h2>
+      <p style="margin-bottom: 14px; color: var(--text-light);">
+        Work smarter, not just harder — these evidence-based techniques actually improve how well you remember material.
+      </p>
+      <ul class="styled-list">
+        <li><strong>Active Recall</strong> — Instead of re-reading notes, close them and try to recall the information from memory. Quiz yourself.</li>
+        <li><strong>Spaced Repetition</strong> — Review material over increasing intervals (today, then 3 days later, then a week later) instead of cramming.</li>
+        <li><strong>Teach the material</strong> — Explaining a concept to someone else (or even to yourself out loud) reveals gaps in your understanding.</li>
+        <li><strong>Use flashcards</strong> — Apps like Anki or Quizlet make flashcard studying easy and incorporate spaced repetition automatically.</li>
+        <li><strong>Create mnemonics</strong> — Use acronyms, rhymes, or stories to remember lists and sequences.</li>
+        <li><strong>Mind mapping</strong> — Draw diagrams connecting related concepts. Visual organization helps your brain see the "big picture."</li>
+        <li><strong>Write by hand when possible</strong> — Studies suggest that handwriting notes improves comprehension and retention compared to typing.</li>
+      </ul>
+    </div>
+
+    <!-- Study Step-by-Step Process -->
+    <div class="card">
+      <h2>📋 How to Prepare for an Exam: Step-by-Step</h2>
+      <ol class="styled-ol">
+        <li><strong>1 Week Before:</strong> Review all lecture notes, textbook chapters, and old homework. Identify weak areas.</li>
+        <li><strong>5 Days Before:</strong> Create a summary sheet or outline of key terms, formulas, and concepts.</li>
+        <li><strong>3 Days Before:</strong> Do practice problems, old quizzes, or study guide questions.</li>
+        <li><strong>2 Days Before:</strong> Review your summary sheet again. Focus on material you got wrong in practice.</li>
+        <li><strong>1 Day Before:</strong> Light review only. Get to bed at a reasonable time. Set multiple alarms.</li>
+        <li><strong>Day of Exam:</strong> Eat breakfast, arrive early, stay calm. Trust your preparation.</li>
+      </ol>
+    </div>
+
+    <div class="info-box">
+      🔗 Want more resources? Visit the <a href="resources.html">Resources page</a> for links to study tools and academic websites.
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Student Success Toolkit &mdash; Web Development Course Project</p>
+    <p style="margin-top:6px;"><a href="about.html">Learn more about this project</a></p>
+  </footer>
+
+  <!-- JavaScript for filter -->
+  <script>
+    function filterTips(category) {
+      var sections = document.getElementsByClassName("tip-section");
+      var message  = document.getElementById("filter-message");
+
+      if (category === "all") {
+        for (var i = 0; i < sections.length; i++) {
+          sections[i].style.display = "block";
+        }
+        message.textContent = "Showing all tips.";
+      } else {
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].getAttribute("data-category") === category) {
+            sections[i].style.display = "block";
+          } else {
+            sections[i].style.display = "none";
+          }
+        }
+
+        var names = {
+          "time":   "Time Management",
+          "focus":  "Focus & Habits",
+          "memory": "Memory & Retention"
+        };
+        message.textContent = "Showing: " + names[category] + " tips only.";
+      }
+    }
+  </script>
+
+</body>
+</html>

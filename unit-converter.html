@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Converter – Student Success Toolkit</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">📚 Student Success Toolkit</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gpa-calculator.html">GPA Calculator</a></li>
+      <li><a href="unit-converter.html" class="active">Unit Converter</a></li>
+      <li><a href="study-tips.html">Study Tips</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>📐 Unit Converter</h1>
+    <p>Quickly convert between common units used in science, math, and everyday life.</p>
+  </div>
+
+  <main>
+
+    <!-- Converter Form -->
+    <div class="card">
+      <h2>Convert a Value</h2>
+
+      <div class="form-group">
+        <label for="unit-type">Conversion Type</label>
+        <select id="unit-type" onchange="updateLabels()">
+          <option value="in-cm">Inches → Centimeters</option>
+          <option value="cm-in">Centimeters → Inches</option>
+          <option value="lb-kg">Pounds → Kilograms</option>
+          <option value="kg-lb">Kilograms → Pounds</option>
+          <option value="f-c">Fahrenheit → Celsius</option>
+          <option value="c-f">Celsius → Fahrenheit</option>
+          <option value="mi-km">Miles → Kilometers</option>
+          <option value="km-mi">Kilometers → Miles</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="input-value" id="input-label">Value in Inches</label>
+        <input
+          type="number"
+          id="input-value"
+          placeholder="Enter a number"
+          step="any"
+        />
+      </div>
+
+      <button class="btn btn-accent" onclick="convertUnit()" style="font-size: 1.05rem; padding: 12px 28px;">
+        Convert
+      </button>
+
+      <button class="btn" onclick="clearConverter()" style="margin-left: 12px; background: #666;">
+        Clear
+      </button>
+
+      <!-- Result -->
+      <div class="result-box" id="convert-result"></div>
+    </div>
+
+    <!-- Reference Table -->
+    <div class="card">
+      <h2>Quick Reference Table</h2>
+      <p style="margin-bottom: 16px; color: var(--text-light);">Handy conversions to keep in mind for class and everyday use.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Conversion</th>
+            <th>Formula</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Inches → Centimeters</td>
+            <td>inches × 2.54</td>
+            <td>12 in = 30.48 cm</td>
+          </tr>
+          <tr>
+            <td>Centimeters → Inches</td>
+            <td>cm ÷ 2.54</td>
+            <td>100 cm = 39.37 in</td>
+          </tr>
+          <tr>
+            <td>Pounds → Kilograms</td>
+            <td>lbs × 0.4536</td>
+            <td>150 lbs = 68.04 kg</td>
+          </tr>
+          <tr>
+            <td>Kilograms → Pounds</td>
+            <td>kg × 2.2046</td>
+            <td>70 kg = 154.32 lbs</td>
+          </tr>
+          <tr>
+            <td>Fahrenheit → Celsius</td>
+            <td>(°F − 32) × 5/9</td>
+            <td>98.6°F = 37°C</td>
+          </tr>
+          <tr>
+            <td>Celsius → Fahrenheit</td>
+            <td>(°C × 9/5) + 32</td>
+            <td>0°C = 32°F</td>
+          </tr>
+          <tr>
+            <td>Miles → Kilometers</td>
+            <td>miles × 1.6093</td>
+            <td>5 mi = 8.05 km</td>
+          </tr>
+          <tr>
+            <td>Kilometers → Miles</td>
+            <td>km × 0.6214</td>
+            <td>10 km = 6.21 mi</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Student Success Toolkit &mdash; Web Development Course Project</p>
+    <p style="margin-top:6px;"><a href="about.html">Learn more about this project</a></p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Updates the input label when conversion type changes
+    function updateLabels() {
+      var type = document.getElementById("unit-type").value;
+
+      var labels = {
+        "in-cm": "Value in Inches",
+        "cm-in": "Value in Centimeters",
+        "lb-kg": "Value in Pounds",
+        "kg-lb": "Value in Kilograms",
+        "f-c":   "Temperature in Fahrenheit",
+        "c-f":   "Temperature in Celsius",
+        "mi-km": "Value in Miles",
+        "km-mi": "Value in Kilometers"
+      };
+
+      document.getElementById("input-label").textContent = labels[type];
+
+      // Hide result when type changes
+      var resultBox = document.getElementById("convert-result");
+      resultBox.classList.remove("visible");
+    }
+
+    // Performs the unit conversion
+    function convertUnit() {
+      var type  = document.getElementById("unit-type").value;
+      var input = parseFloat(document.getElementById("input-value").value);
+
+      if (isNaN(input)) {
+        alert("Please enter a valid number to convert.");
+        return;
+      }
+
+      var result;
+      var resultText;
+
+      if (type === "in-cm") {
+        result = (input * 2.54).toFixed(4);
+        resultText = input + " inches = <strong>" + result + " centimeters</strong>";
+
+      } else if (type === "cm-in") {
+        result = (input / 2.54).toFixed(4);
+        resultText = input + " centimeters = <strong>" + result + " inches</strong>";
+
+      } else if (type === "lb-kg") {
+        result = (input * 0.453592).toFixed(4);
+        resultText = input + " pounds = <strong>" + result + " kilograms</strong>";
+
+      } else if (type === "kg-lb") {
+        result = (input * 2.20462).toFixed(4);
+        resultText = input + " kilograms = <strong>" + result + " pounds</strong>";
+
+      } else if (type === "f-c") {
+        result = ((input - 32) * 5 / 9).toFixed(4);
+        resultText = input + "°F = <strong>" + result + "°C</strong>";
+
+      } else if (type === "c-f") {
+        result = ((input * 9 / 5) + 32).toFixed(4);
+        resultText = input + "°C = <strong>" + result + "°F</strong>";
+
+      } else if (type === "mi-km") {
+        result = (input * 1.60934).toFixed(4);
+        resultText = input + " miles = <strong>" + result + " kilometers</strong>";
+
+      } else if (type === "km-mi") {
+        result = (input * 0.621371).toFixed(4);
+        resultText = input + " kilometers = <strong>" + result + " miles</strong>";
+      }
+
+      var resultBox = document.getElementById("convert-result");
+      resultBox.innerHTML = "📏 Result: " + resultText;
+      resultBox.classList.add("visible");
+    }
+
+    // Clears the form and result
+    function clearConverter() {
+      document.getElementById("input-value").value = "";
+      var resultBox = document.getElementById("convert-result");
+      resultBox.innerHTML = "";
+      resultBox.classList.remove("visible");
+    }
+  </script>
+
+</body>
+</html>
