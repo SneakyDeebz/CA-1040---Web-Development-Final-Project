@@ -1,0 +1,441 @@
+/* ===========================
+   Student Success Toolkit
+   Main Stylesheet
+   =========================== */
+
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+/* --- CSS Variables (Color Theme) --- */
+:root {
+  --primary: #2c5f8a;
+  --primary-dark: #1a3f5c;
+  --accent: #e8a020;
+  --accent-dark: #c47d00;
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --text: #1e1e2e;
+  --text-light: #5a5a72;
+  --border: #d0dce8;
+  --success: #2e7d5e;
+  --shadow: 0 2px 10px rgba(44, 95, 138, 0.12);
+}
+
+/* --- Reset & Base --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+h1, h2, h3 {
+  font-family: 'Merriweather', serif;
+  color: var(--primary-dark);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--primary-dark);
+}
+
+img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* --- Navigation Bar --- */
+nav {
+  background-color: var(--primary-dark);
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+nav .logo {
+  font-family: 'Merriweather', serif;
+  color: #ffffff;
+  font-size: 1.2rem;
+  padding: 16px 0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 10px 0;
+}
+
+nav ul li a {
+  color: #ccd9e8;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background-color: var(--accent);
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+/* --- Page Header Banner --- */
+.page-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  text-align: center;
+  padding: 50px 20px 40px;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: #b8d4ee;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- Main Content Wrapper --- */
+main {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* --- Cards --- */
+.card {
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 28px 30px;
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  padding: 11px 26px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+  text-decoration: none;
+  color: white;
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  color: #1a1a1a;
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-dark);
+  color: #1a1a1a;
+}
+
+/* --- Form Elements --- */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--primary-dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Source Sans 3', sans-serif;
+  background: #fafcff;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(44, 95, 138, 0.12);
+}
+
+/* --- Result Box --- */
+.result-box {
+  background: #eaf3fb;
+  border: 1px solid #b0ceea;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  display: none;
+}
+
+.result-box.visible {
+  display: block;
+}
+
+/* --- Tables --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.97rem;
+}
+
+table th {
+  background-color: var(--primary);
+  color: white;
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+}
+
+table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+table tr:nth-child(even) td {
+  background-color: #f0f5fb;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Lists --- */
+.styled-list {
+  list-style: none;
+  padding: 0;
+}
+
+.styled-list li {
+  padding: 10px 0 10px 28px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.styled-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: 700;
+}
+
+.styled-list li:last-child {
+  border-bottom: none;
+}
+
+ol.styled-ol {
+  padding-left: 22px;
+}
+
+ol.styled-ol li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+ol.styled-ol li:last-child {
+  border-bottom: none;
+}
+
+/* --- Grid Layout (for cards) --- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 640px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  nav {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+  nav ul {
+    justify-content: center;
+  }
+}
+
+/* --- Hero (Home Page) --- */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  text-align: center;
+  padding: 70px 20px 60px;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  color: white;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: #c4ddf0;
+  max-width: 580px;
+  margin: 0 auto 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Feature Cards (Home Page) --- */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+  margin-top: 10px;
+}
+
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(44, 95, 138, 0.16);
+}
+
+.feature-card .icon {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+}
+
+.feature-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 0.92rem;
+  color: var(--text-light);
+}
+
+/* --- Footer --- */
+footer {
+  background-color: var(--primary-dark);
+  color: #9ab5cc;
+  text-align: center;
+  padding: 24px 20px;
+  margin-top: 60px;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--accent);
+}
+
+/* --- Alert/Info Box --- */
+.info-box {
+  background: #fff8e6;
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 18px 0;
+  font-size: 0.95rem;
+  color: #5a4200;
+}
+
+/* --- About Page Image --- */
+.about-img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* --- GPA Table (dynamic rows) --- */
+#gpa-rows .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#gpa-rows .row button {
+  background: #e05555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#gpa-rows .row button:hover {
+  background: #b83333;
+}

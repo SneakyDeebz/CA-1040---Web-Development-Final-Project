@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPA Calculator – Student Success Toolkit</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">📚 Student Success Toolkit</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gpa-calculator.html" class="active">GPA Calculator</a></li>
+      <li><a href="unit-converter.html">Unit Converter</a></li>
+      <li><a href="study-tips.html">Study Tips</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>🎓 GPA Calculator</h1>
+    <p>Enter your courses, letter grades, and credit hours to calculate your semester GPA.</p>
+  </div>
+
+  <main>
+
+    <!-- How It Works -->
+    <div class="info-box">
+      ℹ️ <strong>How it works:</strong> GPA is calculated by multiplying each course's grade points by its credit hours, adding them all together, then dividing by the total credit hours.
+    </div>
+
+    <!-- Grade Scale Reference -->
+    <div class="card">
+      <h2>Grade Point Scale</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Letter Grade</th>
+            <th>Grade Points</th>
+            <th>Percentage Range</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>A</td><td>4.0</td><td>90 – 100%</td></tr>
+          <tr><td>B</td><td>3.0</td><td>80 – 89%</td></tr>
+          <tr><td>C</td><td>2.0</td><td>70 – 79%</td></tr>
+          <tr><td>D</td><td>1.0</td><td>60 – 69%</td></tr>
+          <tr><td>F</td><td>0.0</td><td>Below 60%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Calculator Form -->
+    <div class="card">
+      <h2>Enter Your Courses</h2>
+
+      <!-- Course Rows -->
+      <div id="gpa-rows">
+        <!-- Rows are added by JavaScript -->
+      </div>
+
+      <button class="btn" onclick="addRow()" style="margin-top: 6px;">+ Add Course</button>
+
+      <hr style="margin: 22px 0; border-color: var(--border);" />
+
+      <button class="btn btn-accent" onclick="calculateGPA()" style="font-size: 1.05rem; padding: 12px 30px;">
+        Calculate GPA
+      </button>
+
+      <button class="btn" onclick="clearAll()" style="margin-left: 12px; background: #666;">
+        Clear All
+      </button>
+
+      <!-- Result Display -->
+      <div class="result-box" id="gpa-result"></div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Student Success Toolkit &mdash; Web Development Course Project</p>
+    <p style="margin-top:6px;"><a href="about.html">Learn more about this project</a></p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    let rowCount = 0;
+
+    // Adds a new course row to the form
+    function addRow() {
+      rowCount++;
+      var container = document.getElementById("gpa-rows");
+
+      var row = document.createElement("div");
+      row.className = "row";
+      row.id = "row-" + rowCount;
+
+      // Course name input
+      var nameInput = document.createElement("input");
+      nameInput.type = "text";
+      nameInput.placeholder = "Course Name (e.g. Math 101)";
+      nameInput.id = "name-" + rowCount;
+      nameInput.style.padding = "9px 12px";
+      nameInput.style.border = "1px solid var(--border)";
+      nameInput.style.borderRadius = "6px";
+      nameInput.style.fontSize = "0.97rem";
+      nameInput.style.width = "100%";
+
+      // Grade select dropdown
+      var gradeSelect = document.createElement("select");
+      gradeSelect.id = "grade-" + rowCount;
+      gradeSelect.style.padding = "9px 12px";
+      gradeSelect.style.border = "1px solid var(--border)";
+      gradeSelect.style.borderRadius = "6px";
+      gradeSelect.style.fontSize = "0.97rem";
+      gradeSelect.style.width = "100%";
+      gradeSelect.style.background = "#fafcff";
+
+      var grades = ["A (4.0)", "B (3.0)", "C (2.0)", "D (1.0)", "F (0.0)"];
+      var gradeValues = ["4.0", "3.0", "2.0", "1.0", "0.0"];
+
+      for (var i = 0; i < grades.length; i++) {
+        var option = document.createElement("option");
+        option.value = gradeValues[i];
+        option.text = grades[i];
+        gradeSelect.appendChild(option);
+      }
+
+      // Credit hours input
+      var creditsInput = document.createElement("input");
+      creditsInput.type = "number";
+      creditsInput.placeholder = "Credit Hrs";
+      creditsInput.id = "credits-" + rowCount;
+      creditsInput.min = "1";
+      creditsInput.max = "6";
+      creditsInput.value = "3";
+      creditsInput.style.padding = "9px 12px";
+      creditsInput.style.border = "1px solid var(--border)";
+      creditsInput.style.borderRadius = "6px";
+      creditsInput.style.fontSize = "0.97rem";
+      creditsInput.style.width = "100%";
+
+      // Remove button
+      var removeBtn = document.createElement("button");
+      removeBtn.textContent = "✕";
+      removeBtn.title = "Remove this course";
+      var rowId = "row-" + rowCount;
+      removeBtn.onclick = function() {
+        var rowToRemove = document.getElementById(rowId);
+        container.removeChild(rowToRemove);
+      };
+
+      row.appendChild(nameInput);
+      row.appendChild(gradeSelect);
+      row.appendChild(creditsInput);
+      row.appendChild(removeBtn);
+
+      container.appendChild(row);
+    }
+
+    // Calculates GPA from all rows
+    function calculateGPA() {
+      var rows = document.getElementById("gpa-rows").getElementsByClassName("row");
+
+      if (rows.length === 0) {
+        alert("Please add at least one course before calculating.");
+        return;
+      }
+
+      var totalPoints = 0;
+      var totalCredits = 0;
+      var valid = true;
+
+      for (var i = 0; i < rows.length; i++) {
+        var rowId = rows[i].id;
+        var num = rowId.replace("row-", "");
+
+        var grade = parseFloat(document.getElementById("grade-" + num).value);
+        var credits = parseFloat(document.getElementById("credits-" + num).value);
+
+        if (isNaN(credits) || credits <= 0) {
+          alert("Please enter a valid number of credit hours for all courses.");
+          valid = false;
+          break;
+        }
+
+        totalPoints += grade * credits;
+        totalCredits += credits;
+      }
+
+      if (!valid) return;
+
+      var gpa = totalPoints / totalCredits;
+      var rounded = gpa.toFixed(2);
+
+      var standing = "";
+      if (gpa >= 3.5) {
+        standing = "Dean's List – Excellent work!";
+      } else if (gpa >= 3.0) {
+        standing = "Good Academic Standing";
+      } else if (gpa >= 2.0) {
+        standing = "Satisfactory – Keep it up!";
+      } else {
+        standing = "At Risk – Consider visiting academic advising.";
+      }
+
+      var resultBox = document.getElementById("gpa-result");
+      resultBox.innerHTML = "📊 Your Semester GPA: <strong>" + rounded + "</strong> &nbsp;|&nbsp; " + standing
+        + "<br><small>Calculated from " + rows.length + " course(s) totaling " + totalCredits + " credit hours.</small>";
+      resultBox.classList.add("visible");
+    }
+
+    // Clears all rows and hides the result
+    function clearAll() {
+      document.getElementById("gpa-rows").innerHTML = "";
+      var resultBox = document.getElementById("gpa-result");
+      resultBox.innerHTML = "";
+      resultBox.classList.remove("visible");
+      rowCount = 0;
+    }
+
+    // Start with 3 rows by default
+    addRow();
+    addRow();
+    addRow();
+  </script>
+
+</body>
+</html>
